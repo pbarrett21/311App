@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 var userSchema = new mongoose.Schema({
     fullName:{
         type: String,
-        required: 'Full name can\'t be empty'
+        required: 'Full name cannot be empty'
     },
     email: {
         type: String,
