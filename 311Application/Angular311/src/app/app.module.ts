@@ -11,16 +11,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
+import { UserService } from './shared/user.service'
 
 // routes
 import { appRoutes } from './routes';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { SignInComponent } from './user/sign-in/sign-in.component';
 
+
+//other
+import { AuthGuard } from './auth/auth.guard'
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    SignUpComponent
+    SignUpComponent,
+    UserProfileComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +37,7 @@ import { appRoutes } from './routes';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

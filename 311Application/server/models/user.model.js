@@ -46,9 +46,12 @@ userSchema.methods.verifyPassword = function (password){
 };
 
 userSchema.methods.generateJwt = function () {
-    return jwt.sign({_id: this._id},
-    process.env.JWT_SECRET);
+    return jwt.sign({ _id: this._id},
+        process.env.JWT_SECRET,
+    {
+        expiresIn: process.env.JWT_EXP
+    });
 }
 
 
-mongoose.model('users', userSchema);
+mongoose.model('User', userSchema);
