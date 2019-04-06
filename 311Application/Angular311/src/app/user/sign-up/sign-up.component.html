@@ -20,6 +20,12 @@
       <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
       <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 8 characters.</label>
   </div>
+  <input type="text" #zipCode = "ngModel" [(ngModel)]="userService.selectedUser.zipCode" name="zipCode" placeholder="Zip Code"
+  minlength="5" maxlength="5" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !zipCode.valid }">  
+  <div *ngIf="signUpForm.submitted && password.errors">
+      <label *ngIf="zipCode.errors.required" class="validation-message">This field is required.</label>
+      <label *ngIf="zipCode.errors.minlength" class="validation-message">Enter 5 characters.</label>
+  </div>
   <input type="submit" value="Sign Up">
 </form>
 

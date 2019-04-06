@@ -20,6 +20,10 @@ var userSchema = new mongoose.Schema({
     userType: {
         type: String
     },
+    userLocation:{
+        type: String,
+        required: 'Zip Code can\'t be empty'
+    },
     saltSecret: String
 });
 

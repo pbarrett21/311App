@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <div id="formContent">
+<form #createPostForm="ngForm" (ngSubmit)="createPostForm.valid && onSubmit(createPostForm)">
+  <input type="text" name="postTitle" #postTitle="ngModel" [(ngModel)]="model.postTitle" placeholder="Post Title" required
+    [ngClass]="{'invalid-textbox' :createPostForm.submitted && !postTitle.valid }">
+    <input type="text" name="postText" #postText="ngModel" [(ngModel)]="model.postText" placeholder="Post Text" required
+    [ngClass]="{'invalid-textbox' :createPostForm.submitted && !postText.valid }">
+    <input type="text" name="postLocation" #postLocation="ngModel" [(ngModel)]="model.postLocation" placeholder="Zip Code"
+    [ngClass]="{'invalid-textbox' :createPostForm.submitted && !postLocation.valid }">
+  <input type="submit" value="Post">
+</form>
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>
+</div>
+</div>>
+

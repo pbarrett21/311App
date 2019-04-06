@@ -27,7 +27,7 @@ serverErrorMessages: string;
     this.userService.login(form.value).subscribe(
       res => {
         this.userService.setToken(res['token']);
-        this.router.navigateByUrl('/userprofile');
+        this.router.navigateByUrl('/postDashboard');
       },
       err => {
         this.serverErrorMessages = err.error.message;
