@@ -22,7 +22,13 @@ router.get('/userProfile', jwtHelper.verifyJwtToken, ctrlUser.userProfile);
 //Post Request for Posting a new post
 router.post('/newPost', ctrlPost.post);
 
+/**
+*   Warning to anyone who touches this:
+*       If you try to access req._id to get the user token and it is undefined
+*       check to see if you call jwtHelper.verifyJwtToken on the route. Don't be like me....
+**/
+
 //Get Request for getting alll posts that pertain to a certin zip code
-router.get('/postDashboard', ctrlPost.postDashboard)
+router.get('/postDashboard', jwtHelper.verifyJwtToken, ctrlPost.postDashboard)
 
 module.exports = router;

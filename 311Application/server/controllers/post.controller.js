@@ -7,7 +7,7 @@ const User = mongoose.model('User');
 
 module.exports.post = (req, res, next) =>{
         var post = new Post();
-       // post.userId = req.User._id;
+        post.userId = req.User._id;
         post.postTitle = req.body.postTitle;
         post.postText = req.body.postText;
         post.postLocation = req.body.postLocation;
@@ -26,17 +26,24 @@ module.exports.post = (req, res, next) =>{
 }
 
 module.exports.postDashboard = (req, res, next) => {
-    USER = User.findOne({ _id: req._id},
+
+    //This is going to select the user location from the user object 
+    // in the mongo db
+    var userLocation;
+    User.findOne({ _id: req._id},
         (err, user) => {
-                USER = user
+                this.userLocation = user.userLocation
                 if(err){
                     console.log(err)
                 }
         });
 
-    Post.find({postLocation: USER.userLocation},
+    // This is ogin to select the posts from the Post document in the mongoDB
+    //      This is going to select all the posts that matches the user location
+    Post.find({postLocation: this.userLocation.toString()},
         (err, post) => {
             console.log(post)
+            console.log(this.userLocation)
             if(!post){
                 return res.status(404).json({ status: false, message: 'No Posts found...'});
             }

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class PostDashboardComponent implements OnInit {
   posts;
+  user;
   constructor(private postService: PostService, private router: Router) { }
 
   ngOnInit() {

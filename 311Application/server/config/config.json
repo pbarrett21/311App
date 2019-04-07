@@ -3,12 +3,12 @@
         "PORT": 3000,
         "MONGODB_URI": "mongodb://localhost:27017/311Database",
         "JWT_SECRET": "SECRET#311",
-        "JWT_EXP": "2m"
+        "JWT_EXP": "20m"
     },
     "production": {
         "PORT": 80,
         "MONGODB_URI": "mongodb://xxxxxxx/311Database",
         "JWT_SECRET": "SECRET#311",
-        "JWT_EXP": "2m"
+        "JWT_EXP": "20m"
     }
 }

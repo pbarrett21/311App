@@ -20,10 +20,10 @@ export const appRoutes: Routes = [
         path: 'userprofile', component: UserProfileComponent, canActivate:[AuthGuard]
     },
     {
-        path: 'newPost', component: CreatePostComponent
+        path: 'newPost', component: CreatePostComponent, canActivate:[AuthGuard]
     },
     {
-        path: 'postDashboard', component: PostDashboardComponent
+        path: 'postDashboard', component: PostDashboardComponent, canActivate:[AuthGuard]
     },
     {
         path: '', redirectTo: '/login', pathMatch: 'full'

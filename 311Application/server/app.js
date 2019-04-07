@@ -15,10 +15,10 @@ var app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(passport.initialize());
+app.use(passport.session());
 app.use('/api', rtsIndex);
 
 //Error Handler
-
 app.use((err, req, res, next) => {
     if(err.name == 'ValidationError') {
         var valErrors = [];
