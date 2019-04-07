@@ -20,7 +20,7 @@ export class PostService {
 
   //HttpMethods
   newPost(post: Post){
-    return this.http.post(environment.apiBaseUrl+'/newPost', post, this.noAuthHeader);
+    return this.http.post(environment.apiBaseUrl+'/newPost', post);
   }
 
   getPostDashboard(){

@@ -1,13 +1,25 @@
-<table *ngIf="posts" class="table-fill">
+
+<table *ngIf="posts" id="postDashboardTable" class="table-fill">
   <thead>
-      <tr>
-          <th colspan="2" class="text-center">Post Dashboard</th>
-      </tr>
+      <th>Title</th>
+      <th>Issue</th>
+      <th>Location</th>
+      <th>New Post</th>
   </thead>
   <tbody>
-      <tr>
-          <td>First Name</td>
-          <td>{{posts.postTitle}}</td>
-      </tr>
+    <tr *ngFor="let post of posts">
+      <td>
+          {{post.postTitle}}
+      </td>
+      <td>
+          {{post.postText}}
+      </td>
+      <td>
+          {{post.postLocation}}
+      </td>
+      <td>
+          <input type="button" (click)="router.navigate(['/newPost']);" value="New Post!" />
+      </td>
+    </tr>
   </tbody>
 </table>

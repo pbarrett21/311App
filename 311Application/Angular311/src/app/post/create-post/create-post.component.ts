@@ -27,7 +27,7 @@ export class CreatePostComponent implements OnInit {
     this.postService.newPost(form.value).subscribe(
       res => {
         this.showSuccessMessage = true;
-        this.router.navigateByUrl('/login')
+        this.router.navigateByUrl('/postDashboard')
       },
       err => {
         this.serverErrorMessages = err.error.message;
