@@ -1,0 +1,29 @@
+#logoutButton {
+	background-color:red;
+}
+
+#userDetailsTable {
+	margin-left:auto;
+	margin-right:auto;
+	border-radius: 10px;
+	border-color: #ffffff;
+}
+
+#userDetailsTable th {
+        padding:8px;
+        background-color: #3399FF;
+        color: #FFFFFF;
+}
+
+#userDetailsTable td {
+	boarder-color: #ffffff;
+	padding: 10px;
+}
+
+table tr:nth-child(odd) {
+        background-color: #f1f1f1;
+}
+
+table tr:nth-child(even) {
+        background-color: #ffffff;
+}
