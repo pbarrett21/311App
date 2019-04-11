@@ -13,7 +13,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUserProfile().subscribe(
-      res => {
+    res => {
         this.userDetails = res['user'];
       },
       err => { 

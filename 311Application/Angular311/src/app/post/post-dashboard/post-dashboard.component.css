@@ -1,5 +1,5 @@
-body {
-	margin-left: auto;
+h1 {
+	text-align:center;
 }
 
 table {
@@ -7,12 +7,33 @@ table {
 	margin-right: auto;
 	width: 90%;
 	border-radius: 10px;
+	border-color: #CCCCFF;
+	background-color: #FFFFFF;
 }
 
-thead {
-	background-color: #CCCCFF;
+#postDashboardTable td {
+	padding: 10px;
+	text-align: center;	
+}
+
+#postDashboardTable th {
+	padding:8px;
+	background-color: #3399FF;
+	color: #FFFFFF;
+}
+
+table tr:nth-child(odd) {
+	background-color: #f1f1f1;
+}
+
+table tr:nth-child(even) {
+	background-color: #ffffff;
 }
 
 #postbutton {
 	background-color: green;
+}
+
+#nav {
+	text-align: center;
 }

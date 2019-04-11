@@ -1,3 +1,6 @@
+<h1>Welcome, {{userDetails.fullName.split(' ')[0]}}!
+<br>Here's the information we have on file for you...</h1>
+
 <table *ngIf="userDetails" class="table-fill" id="userDetailsTable">
     <thead>
         <tr>
@@ -23,6 +26,8 @@
         <tr>
             <td colspan="2" class="text-center">
                 <input type="button" (click)="onLogout()" value="Logout" id="logoutButton" />
+		<br>
+		<input type="button" (click)="router.navigate(['/postDashboard']);" value="View Issues" id="dashboardButton"/>
             </td>
         </tr>
     </tbody>

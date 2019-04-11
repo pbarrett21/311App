@@ -15,14 +15,13 @@ export class PostDashboardComponent implements OnInit {
   ngOnInit() {
     this.postService.getPostDashboard().subscribe(
       res => { 
-        console.log(res)
-        this.posts = res['post'];
+      this.posts = res['post'];
       },
       err => { 
         console.log(err);
         
-      }
-    )
+	}
+	)
   }
 
 }
