@@ -1,5 +1,5 @@
 <h1>Issues In Your Area</h1><br>
-<table id="postDashboardTable" class="table-fill">
+<table *ngIf="posts?.length > 0" id="postDashboardTable" class="table-fill">
   <thead>
       <th>Title</th>
       <th>Issue</th>
@@ -19,6 +19,7 @@
     </tr>
   </tbody>
 </table>
+<h1 *ngIf="posts?.length == 0">There are currently no issues in your area.</h1>
 <br>
 <table id="nav">
         <tr>

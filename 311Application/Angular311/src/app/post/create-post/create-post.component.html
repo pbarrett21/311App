@@ -1,4 +1,8 @@
 <div class="wrapper">
+  <h1>Report a New Issue</h1>
+  <p>Please enter details about your issue below, including a title, a brief description of the issue, as well 
+     as the location of the problem by zip code.</p>
+  <br>
   <div id="formContent">
 <form #createPostForm="ngForm" (ngSubmit)="createPostForm.valid && onSubmit(createPostForm)">
   <input type="text" name="postTitle" #postTitle="ngModel" [(ngModel)]="model.postTitle" placeholder="Post Title" required
@@ -9,6 +13,7 @@
     [ngClass]="{'invalid-textbox' :createPostForm.submitted && !postLocation.valid }">
   <input type="submit" value="Post">
 </form>
+<input type="button" value="Back to Issues" (click)="router.navigate(['/postDashboard']);" id="postsButton" />
 <!-- Error message -->
 <div class="alert" *ngIf="serverErrorMessages">
   {{serverErrorMessages}}
