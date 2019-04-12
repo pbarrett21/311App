@@ -34,6 +34,14 @@ table tr:nth-child(even) {
 	background-color: green;
 }
 
+#deleteButton {
+	background-color: red;
+}
+
 #nav {
 	text-align: center;
+}
+
+#adminOptions {
+	width: 10%;
 }

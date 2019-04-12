@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class PostDashboardComponent implements OnInit {
   posts;
   user;
+  isAdmin = true;
   constructor(private postService: PostService, private router: Router) { }
 
   ngOnInit() {
@@ -22,6 +23,12 @@ export class PostDashboardComponent implements OnInit {
         
 	}
 	)
+  }
+
+  public deletePost(num) {
+    var postId = this.posts[num]._id;
+    
+    // Insert code to delete post by id here
   }
 
 }

@@ -30,18 +30,35 @@ module.exports.postDashboard = (req, res, next) => {
     //This is going to select the user location from the user object 
     // in the mongo db
     var userLocation;
+    var userType;
+
     User.findOne({ _id: req._id},
         (err, user) => {
                 this.userLocation = user.userLocation
+                this.userType = user.userType
                 if(err){
                     console.log(err)
                 }
         });
 
-    // This is ogin to select the posts from the Post document in the mongoDB
-    //      This is going to select all the posts that matches the user location
-    Post.find({postLocation: this.userLocation.toString()})
-    .exec(function(err, post){
+    // If user is an admin, get all posts
+    if(this.userType == '0') {
+        Post.find()
+        .exec(function(err, post){
+                if(!post){
+                    return res.status(404).json({ status: false, message: 'No Posts found...'});
+                }
+                else{
+                    console.log(post)
+                    return res.status(200).json({status: true, post});
+                }
+            });
+        }
+    // This is going to select all the posts that matches the user location
+    // If not an admin
+    else {
+        Post.find({postLocation: this.userLocation.toString()})
+        .exec(function(err, post){
             if(!post){
                 return res.status(404).json({ status: false, message: 'No Posts found...'});
             }
@@ -50,4 +67,5 @@ module.exports.postDashboard = (req, res, next) => {
                 return res.status(200).json({status: true, post});
             }
         });
+    }
 }
