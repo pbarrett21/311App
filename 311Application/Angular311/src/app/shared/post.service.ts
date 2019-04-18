@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 
 import { environment } from '../../environments/environment'
 import { Post }  from './post.model';
@@ -11,7 +11,9 @@ export class PostService {
   selectedPost : Post = {
     postTitle: '',
     postText: '',
-    postLocation: ''
+    postLocation: '',
+    postScore: null,
+    postStatus: null
   }
 
   noAuthHeader = {headers: new HttpHeaders({ 'NoAuth': 'True'}) };
@@ -21,6 +23,12 @@ export class PostService {
   //HttpMethods
   newPost(post: Post){
     return this.http.post(environment.apiBaseUrl+'/newPost', post);
+  }
+
+  removePost(postId){
+    let options = new HttpParams
+    options = options.set('postId', postId)
+    return this.http.post(environment.apiBaseUrl + '/deletePost', options)
   }
 
   getPostDashboard(){

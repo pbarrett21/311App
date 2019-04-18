@@ -11,6 +11,8 @@ module.exports.post = (req, res, next) =>{
         post.postTitle = req.body.postTitle;
         post.postText = req.body.postText;
         post.postLocation = req.body.postLocation;
+        post.postScore = req.body.postScore;
+        post.postStatus = 1;
         //Note for those looking at the document inside of the DB
         //Java Date returns the number of Milliseconds ellasped since Jan 1st, 1970
         //to now.
@@ -23,6 +25,12 @@ module.exports.post = (req, res, next) =>{
                 return next(err);
             }
         }); 
+}
+
+module.exports.deletePost = (req, res, next) =>{
+    console.log(req)
+    Post.findOneAndRemove({ _id: req._id})
+    this.router.navigateByUrl('/postDashboard');
 }
 
 module.exports.postDashboard = (req, res, next) => {
@@ -49,7 +57,6 @@ module.exports.postDashboard = (req, res, next) => {
                     return res.status(404).json({ status: false, message: 'No Posts found...'});
                 }
                 else{
-                    console.log(post)
                     return res.status(200).json({status: true, post});
                 }
             });

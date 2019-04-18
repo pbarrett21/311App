@@ -6,6 +6,8 @@ var postSchema = new mongoose.Schema({
     postTitle: String,
     postText: String,
     postLocation: String,
+    postScore: Number,
+    postStatus: String,
     postTime: String
 });
 

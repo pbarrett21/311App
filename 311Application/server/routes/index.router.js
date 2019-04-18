@@ -21,6 +21,7 @@ router.get('/userProfile', jwtHelper.verifyJwtToken, ctrlUser.userProfile);
 
 //Post Request for Posting a new post
 router.post('/newPost', ctrlPost.post);
+router.post('/deletePost', ctrlPost.deletePost);
 
 /**
 *   Warning to anyone who touches this:

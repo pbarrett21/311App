@@ -21,14 +21,13 @@ export class PostDashboardComponent implements OnInit {
       err => { 
         console.log(err);
         
-	}
-	)
+	    }
+	  )
   }
 
-  public deletePost(num) {
+  deletePost(num) {
     var postId = this.posts[num]._id;
-    
-    // Insert code to delete post by id here
+    this.postService.removePost(postId).subscribe()
   }
 
 }

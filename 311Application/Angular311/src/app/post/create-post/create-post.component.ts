@@ -17,7 +17,9 @@ export class CreatePostComponent implements OnInit {
   model ={
     postTitle: '',
     postText: '',
-    postLocation: ''
+    postLocation: '',
+    postScore: '',
+    postStatus: ''
   }
 
   ngOnInit() {
