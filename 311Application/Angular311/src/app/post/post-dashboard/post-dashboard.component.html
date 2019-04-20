@@ -20,9 +20,9 @@
   </thead>
   <tbody>
       <tr *ngFor="let post of posts; index as i">
-      <td><input type="button" (click)="upvotePost(i)" value="&uarr;" class="upvoteButton"/><br>
+      <td><input *ngIf="isCompleted(i)==false" type="button" (click)="upvotePost(i)" value="&uarr;" class="upvoteButton"/><br>
           <div class="postScore">{{post.postScore}}</div><br>
-          <input type="button" (click)="downvotePost(i)" value="&darr;" class="downvoteButton"/></td>
+          <input *ngIf="isCompleted(i)==false" type="button" (click)="downvotePost(i)" value="&darr;" class="downvoteButton"/></td>
       <td>
         <span *ngIf="isCompleted(i)" style="font-weight: bold; color:green;">{{post.postTitle}}</span>
         <span *ngIf="isCompleted(i)==false">{{post.postTitle}}</span>
