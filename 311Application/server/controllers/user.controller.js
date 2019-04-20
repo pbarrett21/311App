@@ -10,20 +10,30 @@ module.exports.register = (req, res, next) =>{
         user.email = req.body.email;
         user.password = req.body.password;
         user.userLocation = req.body.zipCode;
-        user.userType = '1';
-        user.save((err, doc) =>{
-            if(!err){
-                res.send(doc);
-            }
-            else{
-                if(err.code == 11000){
-                    res.status(422).send(['Duplicate email address found.']);
+
+        User.find().exec(
+            function(err, users) {
+                if(users.length == 0) {
+                    user.userType = '0';
                 }
-                else{
-                    return next(err);
+                else {
+                    user.userType = '1';
                 }
+                user.save((err, doc) =>{
+                    if(!err){
+                        res.send(doc);
+                    }
+                    else{
+                        if(err.code == 11000){
+                            res.status(422).send(['Duplicate email address found.']);
+                        }
+                        else{
+                            return next(err);
+                        }
+                    }
+                });
             }
-        });
+        )
 }
 
 module.exports.authenticate = (req, res, next) => {
