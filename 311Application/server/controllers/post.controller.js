@@ -99,32 +99,32 @@ module.exports.postDashboard = (req, res, next) => {
                 if(err){
                     console.log(err)
                 }
-        });
 
-    // If user is an admin, get all posts
-    if(this.userType == '0') {
-        Post.find()
-        .exec(function(err, post){
-                if(!post){
-                    return res.status(404).json({ status: false, message: 'No Posts found...', userType: 0});
+                // If user is an admin, get all posts
+                if(this.userType == '0') {
+                    Post.find()
+                    .exec(function(err, post){
+                            if(!post){
+                                return res.status(404).json({ status: false, message: 'No Posts found...', userType: 0});
+                            }
+                            else{
+                                return res.status(200).json({status: true, post, userType: 0});
+                            }
+                        });
+                    }
+                // This is going to select all the posts that matches the user location
+                // If not an admin
+                else {
+                    Post.find({$and:[{postLocation: this.userLocation.toString()}, {postStatus: 1}]})
+                    .exec(function(err, post){
+                        if(!post){
+                            return res.status(404).json({ status: false, message: 'No Posts found...'});
+                        }
+                        else{
+                            console.log(post)
+                            return res.status(200).json({status: true,post, userType: 1});
+                        }
+                    });
                 }
-                else{
-                    return res.status(200).json({status: true, post, userType: 0});
-                }
-            });
-        }
-    // This is going to select all the posts that matches the user location
-    // If not an admin
-    else {
-        Post.find({$and:[{postLocation: this.userLocation.toString()}, {postStatus: 1}]})
-        .exec(function(err, post){
-            if(!post){
-                return res.status(404).json({ status: false, message: 'No Posts found...'});
-            }
-            else{
-                console.log(post)
-                return res.status(200).json({status: true,post, userType: 1});
-            }
         });
-    }
 }
