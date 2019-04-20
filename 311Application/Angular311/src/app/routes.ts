@@ -6,6 +6,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGuard } from './auth/auth.guard'
 import { CreatePostComponent } from './post/create-post/create-post.component';
 import { PostDashboardComponent } from './post/post-dashboard/post-dashboard.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 
 export const appRoutes: Routes = [
     {
@@ -30,6 +31,15 @@ export const appRoutes: Routes = [
     },
     {
         path: 'postDashboard', component: PostDashboardComponent, canActivate:[AuthGuard]
+    },
+    {
+        path: 'adminDashboard', component: AdminDashboardComponent, canActivate:[AuthGuard]
+    },
+    {
+        path: 'toggleAdmin', component: AdminDashboardComponent, canActivate:[AuthGuard]
+    },
+    {
+        path: 'deleteUser', component: AdminDashboardComponent, canActivate:[AuthGuard]
     },
     {
         path: '', redirectTo: '/login', pathMatch: 'full'

@@ -1,5 +1,15 @@
 <h1>Issues In Your Area</h1>
-<h1 *ngIf="isAdmin" style="color:red;">Note: Signed in as admin</h1><br>
+<h1 *ngIf="isAdmin" style="color:red;font-size:20px;">Note: Signed in as admin</h1><br>
+<table id="nav">
+        <tr>
+                <td>
+			<input type="button" (click)="router.navigate(['/newPost']);" value="Post New Issue" id="postbutton"/>
+            <input type="button" (click)="router.navigate(['/userprofile']);" value="My Profile" id="profileButton"/>
+            <input *ngIf="isAdmin" type="button" (click)="router.navigate(['/adminDashboard']);" value="Admin Dashboard" id="adminButton"/>
+		</td>
+        </tr>
+</table>
+<br>
 <table *ngIf="posts?.length > 0" id="postDashboardTable" class="table-fill">
   <thead>
       <th id="actions">Actions</th>
@@ -9,18 +19,21 @@
       <th *ngIf="isAdmin" id="adminOptions">Admin Options</th>
   </thead>
   <tbody>
-    <tr *ngFor="let post of posts; index as i">
+      <tr *ngFor="let post of posts; index as i">
       <td><input type="button" (click)="upvotePost(i)" value="&uarr;" class="upvoteButton"/><br>
           <div class="postScore">{{post.postScore}}</div><br>
           <input type="button" (click)="downvotePost(i)" value="&darr;" class="downvoteButton"/></td>
       <td>
-          {{post.postTitle}}
+        <span *ngIf="isCompleted(i)" style="font-weight: bold; color:green;">{{post.postTitle}}</span>
+        <span *ngIf="isCompleted(i)==false">{{post.postTitle}}</span>
       </td>
       <td>
-          {{post.postText}}
+            <span *ngIf="isCompleted(i)" style="font-weight: bold; color:green;">{{post.postText}}</span>
+            <span *ngIf="isCompleted(i)==false">{{post.postText}}</span>
       </td>
       <td>
-          {{post.postLocation}}
+            <span *ngIf="isCompleted(i)" style="font-weight: bold; color:green;">{{post.postLocation}}</span>
+            <span *ngIf="isCompleted(i)==false">{{post.postLocation}}</span>
       </td>
       <td *ngIf="isAdmin"><input type="button" (click)="deletePost(i)" value="X" class="deleteButton"/><br>
                           <input *ngIf="isCompleted(i) == false" type="button" (click)="completePost(i)" value="&#9989;" class="completeButton"/></td>
@@ -33,7 +46,8 @@
         <tr>
                 <td>
 			<input type="button" (click)="router.navigate(['/newPost']);" value="Post New Issue" id="postbutton"/>
-			<input type="button" (click)="router.navigate(['/userprofile']);" value="My Profile" id="profileButton"/>
+            <input type="button" (click)="router.navigate(['/userprofile']);" value="My Profile" id="profileButton"/>
+            <input *ngIf="isAdmin" type="button" (click)="router.navigate(['/adminDashboard']);" value="Admin Dashboard" id="adminButton"/>
 		</td>
         </tr>
 </table>

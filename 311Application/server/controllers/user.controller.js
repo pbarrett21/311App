@@ -59,3 +59,66 @@ module.exports.userProfile = (req, res, next) => {
             }
         });
 }
+
+module.exports.adminDashboard = (req, res, next) => {
+    var userType;
+
+    User.findOne({_id: req._id},
+        (err, user) => {
+            User.find().exec(
+                function(err, users) {
+                    if(!users) {
+                        return res.status(404).json({ status: false, message: 'No users found...'});
+                    }
+                    else {
+                        return res.status(200).json({status: true, users, userType: user.userType});
+                    }
+                }
+            )
+        }
+        )
+}
+
+module.exports.toggleAdmin = (req, res, next) => {
+    User.findOne({_id: req._id},
+        (err, user) => {
+            if(user.userType == 0) {
+                User.findOne({_id: req.body['userId']},
+                    (err, targetUser) => {
+                        if(targetUser.userType == 0) {
+                            User.findByIdAndUpdate({_id: req.body['userId']}, {$set:{userType:1}}).exec(
+                                function(err, target) {
+                                    if(!target) { return res.status(500).json({status:false}); }
+                                    else { return res.status(200).json({status:true}); }
+                                }
+                            )
+                        }
+                        else {
+                            User.findByIdAndUpdate({_id: req.body['userId']}, {$set:{userType:0}}).exec(
+                                function(err, target) {
+                                    if(!target) { return res.status(500).json({status:false}); }
+                                    else { return res.status(200).json({status:true}); }
+                                }
+                            )
+                        }
+                    }
+                )
+            }
+        }
+        )
+}
+
+module.exports.deleteUser = (req, res, next) => {
+    User.findOne({_id: req._id},
+        (err, user) => {
+            if(user.userType == 0) {
+                User.findByIdAndDelete({_id: req.body['userId']}).exec(
+                    function(err, targetUser) {
+                        if(!targetUser) { return res.status(500).json({status:false}); }
+                        else { return res.status(200).json({status:true}); }
+                    }
+                )
+            }
+        }
+    )
+}

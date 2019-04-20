@@ -62,4 +62,16 @@ export class UserService {
       return false;
   }
 
+  getAdminDashboard() {
+    return this.http.get(environment.apiBaseUrl + '/adminDashboard')
+  }
+
+  toggleAdmin(userId) {
+    return this.http.post(environment.apiBaseUrl + '/toggleAdmin', {userId})
+  }
+
+  deleteUser(userId) {
+    return this.http.post(environment.apiBaseUrl + '/deleteUser', {userId})
+  }
+
 }

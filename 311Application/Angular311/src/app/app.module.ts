@@ -20,6 +20,7 @@ import { PostService } from './shared/post.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { PostDashboardComponent } from './post/post-dashboard/post-dashboard.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PostDashboardComponent } from './post/post-dashboard/post-dashboard.com
     UserProfileComponent,
     SignInComponent,
     CreatePostComponent,
-    PostDashboardComponent
+    PostDashboardComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,

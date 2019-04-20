@@ -1,0 +1,45 @@
+<h1>Admin Dashboard</h1>
+<h1 *ngIf="isAdmin" style="color:red;font-size:20px;">Note: Signed in as admin</h1><br>
+<table id="nav">
+        <tr>
+                <td>
+			<input type="button" (click)="router.navigate(['/postDashboard']);" value="Go to Issues" id="issuesButton"/>
+			<input type="button" (click)="router.navigate(['/userprofile']);" value="My Profile" id="profileButton"/>
+		</td>
+        </tr>
+</table>
+<br>
+<table *ngIf="(users?.length > 0) && isAdmin" id="adminDashboardTable" class="table-fill">
+  <thead>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Location</th>
+      <th id="adminOptions">Admin Options</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; index as i">
+      <td>
+          {{user.fullName}}
+      </td>
+      <td>
+          {{user.email}}
+      </td>
+      <td>
+          {{user.userLocation}}
+      </td>
+      <td><input type="button" (click)="deleteUser(i)" value="X" class="deleteButton"/><br>
+                          <input *ngIf="hasAdmin(i) == false" type="button" (click)="toggleAdmin(i)" value="Make Admin" class="toggleAdminButton"/>
+                          <input *ngIf="hasAdmin(i)" type="button" (click)="toggleAdmin(i)" value="Remove Admin" class="toggleAdminButton"/></td>
+    </tr>
+  </tbody>
+</table>
+<h1 *ngIf="users?.length == 0">No users were found.</h1>
+<br>
+<table id="nav">
+        <tr>
+                <td>
+			<input type="button" (click)="router.navigate(['/postDashboard']);" value="Go to Issues" id="issuesButton"/>
+			<input type="button" (click)="router.navigate(['/userprofile']);" value="My Profile" id="profileButton"/>
+		</td>
+        </tr>
+</table>

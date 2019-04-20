@@ -11,12 +11,12 @@ table {
 	background-color: #FFFFFF;
 }
 
-#postDashboardTable td {
+#adminDashboardTable td {
 	padding: 8px;
 	text-align: center;	
 }
 
-#postDashboardTable th {
+#adminDashboardTable th {
 	padding:8px;
 	background-color: #3399FF;
 	color: #FFFFFF;
@@ -30,7 +30,7 @@ table tr:nth-child(even) {
 	background-color: #ffffff;
 }
 
-#postbutton, .completeButton {
+#issuesButton {
 	background-color: green;
 }
 
@@ -46,8 +46,10 @@ table tr:nth-child(even) {
 	background-color: crimson;
 }
 
-#adminButton {
+.toggleAdminButton {
 	background-color: goldenrod;
+	font-size: 15px;
+	padding: 5px;
 }
 
 #nav {
@@ -58,7 +60,7 @@ table tr:nth-child(even) {
 	width: 10%;
 }
 
-.upvoteButton, .downvoteButton, .deleteButton, .completeButton {
+.upvoteButton, .downvoteButton, .deleteButton {
 	font-weight: bold;
 	font-size: 25px;
 	padding: 5px 10px 5px 10px;

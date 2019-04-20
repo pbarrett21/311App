@@ -34,4 +34,8 @@ router.post('/votePost', jwtHelper.verifyJwtToken, ctrlPost.votePost);
 //Get Request for getting alll posts that pertain to a certin zip code
 router.get('/postDashboard', jwtHelper.verifyJwtToken, ctrlPost.postDashboard)
 
+router.get('/adminDashboard', jwtHelper.verifyJwtToken, ctrlUser.adminDashboard)
+router.post('/toggleAdmin', jwtHelper.verifyJwtToken, ctrlUser.toggleAdmin)
+router.post('/deleteUser', jwtHelper.verifyJwtToken, ctrlUser.deleteUser)
+
 module.exports = router;
