@@ -28,17 +28,32 @@ module.exports.post = (req, res, next) =>{
 }
 
 module.exports.deletePost = (req, res, next) =>{
-    Post.findByIdAndDelete({_id: req.body['postId']}).exec(
-        function(err, post) {
-            if(!post) {
-                return res.status(500).json({status:false});
-            }
-            else
-            {
-                return res.status(200).json({status:true});
+
+    var userType;
+
+    User.findOne({_id: req._id},
+        (err, user) => {
+            this.userType = user.userType;
+            if(err) {
+                console.log(err)
             }
         }
-    )
+        )
+
+    // Only perform deletion if user is validated as admin
+    if(this.userType == 0) {
+        Post.findByIdAndDelete({_id: req.body['postId']}).exec(
+            function(err, post) {
+                if(!post) {
+                    return res.status(500).json({status:false});
+                }
+                else
+                {
+                    return res.status(200).json({status:true});
+                }
+            }
+        )
+    }
 }
 
 module.exports.postDashboard = (req, res, next) => {
@@ -62,10 +77,10 @@ module.exports.postDashboard = (req, res, next) => {
         Post.find()
         .exec(function(err, post){
                 if(!post){
-                    return res.status(404).json({ status: false, message: 'No Posts found...'});
+                    return res.status(404).json({ status: false, message: 'No Posts found...', userType: 0});
                 }
                 else{
-                    return res.status(200).json({status: true, post});
+                    return res.status(200).json({status: true, post, userType: 0});
                 }
             });
         }
@@ -79,7 +94,7 @@ module.exports.postDashboard = (req, res, next) => {
             }
             else{
                 console.log(post)
-                return res.status(200).json({status: true, post});
+                return res.status(200).json({status: true,post, userType: 1});
             }
         });
     }

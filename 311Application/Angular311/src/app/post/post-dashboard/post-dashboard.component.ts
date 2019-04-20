@@ -9,14 +9,18 @@ import { Router } from '@angular/router';
 })
 export class PostDashboardComponent implements OnInit {
   posts;
-  user;
-  isAdmin = true;
+  userType;
+  isAdmin = false;
   constructor(private postService: PostService, private router: Router) { }
 
   ngOnInit() {
     this.postService.getPostDashboard().subscribe(
       res => { 
         this.posts = res['post'];
+        this.userType = res['userType']
+        if(this.userType == 0) {
+          this.isAdmin = true;
+        }
       },
       err => { 
         console.log(err);
