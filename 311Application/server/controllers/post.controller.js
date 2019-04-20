@@ -11,7 +11,7 @@ module.exports.post = (req, res, next) =>{
         post.postTitle = req.body.postTitle;
         post.postText = req.body.postText;
         post.postLocation = req.body.postLocation;
-        post.postScore = req.body.postScore;
+        post.postScore = 0;
         post.postStatus = 1;
         //Note for those looking at the document inside of the DB
         //Java Date returns the number of Milliseconds ellasped since Jan 1st, 1970
@@ -56,6 +56,35 @@ module.exports.deletePost = (req, res, next) =>{
     }
 }
 
+module.exports.completePost = (req, res, next) =>{
+
+    var userType;
+
+    User.findOne({_id: req._id},
+        (err, user) => {
+            this.userType = user.userType;
+            if(err) {
+                console.log(err)
+            }
+        }
+        )
+
+    // Only perform completion if user is validated as admin
+    if(this.userType == 0) {
+        Post.findByIdAndUpdate({_id: req.body['postId']}, {$set:{postStatus:0}}).exec(
+            function(err, post) {
+                if(!post) {
+                    return res.status(500).json({status:false});
+                }
+                else
+                {
+                    return res.status(200).json({status:true});
+                }
+            }
+        )
+    }
+}
+
 module.exports.postDashboard = (req, res, next) => {
 
     //This is going to select the user location from the user object 
@@ -87,7 +116,7 @@ module.exports.postDashboard = (req, res, next) => {
     // This is going to select all the posts that matches the user location
     // If not an admin
     else {
-        Post.find({postLocation: this.userLocation.toString()})
+        Post.find({$and:[{postLocation: this.userLocation.toString()}, {postStatus: 1}]})
         .exec(function(err, post){
             if(!post){
                 return res.status(404).json({ status: false, message: 'No Posts found...'});

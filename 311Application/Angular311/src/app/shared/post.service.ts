@@ -12,8 +12,8 @@ export class PostService {
     postTitle: '',
     postText: '',
     postLocation: '',
-    postScore: null,
-    postStatus: null
+    postScore: 0,
+    postStatus: 1
   }
 
   noAuthHeader = {headers: new HttpHeaders({ 'NoAuth': 'True'}) };
@@ -27,6 +27,10 @@ export class PostService {
 
   removePost(postId){
     return this.http.post(environment.apiBaseUrl + '/deletePost', {postId})
+  }
+
+  completePost(postId){
+    return this.http.post(environment.apiBaseUrl + '/completePost', {postId})
   }
 
   getPostDashboard(){

@@ -30,7 +30,7 @@ table tr:nth-child(even) {
 	background-color: #ffffff;
 }
 
-#postbutton {
+#postbutton, .completeButton {
 	background-color: green;
 }
 
@@ -54,8 +54,12 @@ table tr:nth-child(even) {
 	width: 10%;
 }
 
-.upvoteButton, .downvoteButton, .deleteButton {
+.upvoteButton, .downvoteButton, .deleteButton, .completeButton {
 	font-weight: bold;
-	font-size: 30px;
+	font-size: 25px;
 	padding: 5px 10px 5px 10px;
+}
+
+.postScore {
+	font-weight: bold;
 }

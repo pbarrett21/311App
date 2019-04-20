@@ -53,4 +53,20 @@ export class PostDashboardComponent implements OnInit {
     )
   }
 
+  completePost(num) {
+    var postId = this.posts[num]._id;
+    this.postService.completePost(postId).subscribe(
+      res => {
+        location.reload()
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
+
+  isCompleted(num) {
+    return (this.posts[num].postStatus == 0)
+  }
+
 }

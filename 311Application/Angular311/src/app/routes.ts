@@ -26,6 +26,9 @@ export const appRoutes: Routes = [
         path: 'deletePost', component: PostDashboardComponent, canActivate:[AuthGuard]
     },
     {
+        path: 'completePost', component: PostDashboardComponent, canActivate:[AuthGuard]
+    },
+    {
         path: 'postDashboard', component: PostDashboardComponent, canActivate:[AuthGuard]
     },
     {

@@ -10,7 +10,7 @@
   <tbody>
     <tr *ngFor="let post of posts; index as i">
       <td><input type="button" (click)="upvotePost(i)" value="&uarr;" class="upvoteButton"/><br>
-          <!--Insert number of votes here--><br>
+          <div class="postScore">{{post.postScore}}</div><br>
           <input type="button" (click)="downvotePost(i)" value="&darr;" class="downvoteButton"/></td>
       <td>
           {{post.postTitle}}
@@ -21,7 +21,8 @@
       <td>
           {{post.postLocation}}
       </td>
-      <td *ngIf="isAdmin"><input type="button" (click)="deletePost(i)" value="X" class="deleteButton"/></td>
+      <td *ngIf="isAdmin"><input type="button" (click)="deletePost(i)" value="X" class="deleteButton"/><br>
+                          <input *ngIf="isCompleted(i) == false" type="button" (click)="completePost(i)" value="&#9989;" class="completeButton"/></td>
     </tr>
   </tbody>
 </table>
