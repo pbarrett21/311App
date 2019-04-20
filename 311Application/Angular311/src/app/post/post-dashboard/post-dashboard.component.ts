@@ -25,6 +25,18 @@ export class PostDashboardComponent implements OnInit {
 	  )
   }
 
+  upvotePost(num) {
+    var postId = this.posts[num]._id;
+    
+    //Insert upvote code
+  }
+
+  downvotePost(num) {
+    var postId = this.posts[num]._id;
+
+    //Insert downvote code
+  }
+
   deletePost(num) {
     var postId = this.posts[num]._id;
     this.postService.removePost(postId).subscribe()

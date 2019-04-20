@@ -1,6 +1,7 @@
 <h1>Issues In Your Area</h1><br>
 <table *ngIf="posts?.length > 0" id="postDashboardTable" class="table-fill">
   <thead>
+      <th id="actions">Actions</th>
       <th>Title</th>
       <th>Issue</th>
       <th>Location</th>
@@ -8,6 +9,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let post of posts; index as i">
+      <td><input type="button" (click)="upvotePost(i)" value="&uarr;" class="upvoteButton"/><br>
+          <!--Insert number of votes here--><br>
+          <input type="button" (click)="downvotePost(i)" value="&darr;" class="downvoteButton"/></td>
       <td>
           {{post.postTitle}}
       </td>
@@ -17,7 +21,7 @@
       <td>
           {{post.postLocation}}
       </td>
-      <td *ngIf="isAdmin"><input type="button" (click)="deletePost(i)" value="X" id="deleteButton"/></td>
+      <td *ngIf="isAdmin"><input type="button" (click)="deletePost(i)" value="X" class="deleteButton"/></td>
     </tr>
   </tbody>
 </table>

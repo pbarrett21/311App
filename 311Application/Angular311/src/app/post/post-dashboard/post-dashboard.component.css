@@ -12,7 +12,7 @@ table {
 }
 
 #postDashboardTable td {
-	padding: 10px;
+	padding: 8px;
 	text-align: center;	
 }
 
@@ -34,14 +34,28 @@ table tr:nth-child(even) {
 	background-color: green;
 }
 
-#deleteButton {
+.upvoteButton {
+	background-color: rgb(64, 185, 64);
+}
+
+.deleteButton {
 	background-color: red;
+}
+
+.downvoteButton {
+	background-color: crimson;
 }
 
 #nav {
 	text-align: center;
 }
 
-#adminOptions {
+#adminOptions, #actions {
 	width: 10%;
+}
+
+.upvoteButton, .downvoteButton, .deleteButton {
+	font-weight: bold;
+	font-size: 30px;
+	padding: 5px 10px 5px 10px;
 }
