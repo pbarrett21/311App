@@ -22,13 +22,11 @@ export class PostService {
 
   //HttpMethods
   newPost(post: Post){
-    return this.http.post(environment.apiBaseUrl+'/newPost', post);
+    return this.http.post(environment.apiBaseUrl+'/newPost', post)
   }
 
   removePost(postId){
-    let options = new HttpParams
-    options = options.set('postId', postId)
-    return this.http.post(environment.apiBaseUrl + '/deletePost', options)
+    return this.http.post(environment.apiBaseUrl + '/deletePost', {postId})
   }
 
   getPostDashboard(){

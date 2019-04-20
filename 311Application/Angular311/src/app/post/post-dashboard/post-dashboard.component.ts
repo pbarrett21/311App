@@ -16,7 +16,7 @@ export class PostDashboardComponent implements OnInit {
   ngOnInit() {
     this.postService.getPostDashboard().subscribe(
       res => { 
-      this.posts = res['post'];
+        this.posts = res['post'];
       },
       err => { 
         console.log(err);
@@ -39,7 +39,14 @@ export class PostDashboardComponent implements OnInit {
 
   deletePost(num) {
     var postId = this.posts[num]._id;
-    this.postService.removePost(postId).subscribe()
+    this.postService.removePost(postId).subscribe(
+      res => {
+        location.reload()
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
 
 }

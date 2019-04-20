@@ -28,9 +28,17 @@ module.exports.post = (req, res, next) =>{
 }
 
 module.exports.deletePost = (req, res, next) =>{
-    console.log(req)
-    Post.findOneAndRemove({ _id: req._id})
-    this.router.navigateByUrl('/postDashboard');
+    Post.findByIdAndDelete({_id: req.body['postId']}).exec(
+        function(err, post) {
+            if(!post) {
+                return res.status(500).json({status:false});
+            }
+            else
+            {
+                return res.status(200).json({status:true});
+            }
+        }
+    )
 }
 
 module.exports.postDashboard = (req, res, next) => {
