@@ -23,6 +23,7 @@ router.get('/userProfile', jwtHelper.verifyJwtToken, ctrlUser.userProfile);
 router.post('/newPost', ctrlPost.post);
 router.post('/deletePost', jwtHelper.verifyJwtToken, ctrlPost.deletePost);
 router.post('/completePost', jwtHelper.verifyJwtToken, ctrlPost.completePost);
+router.post('/votePost', jwtHelper.verifyJwtToken, ctrlPost.votePost);
 
 /**
 *   Warning to anyone who touches this:

@@ -56,6 +56,19 @@ module.exports.deletePost = (req, res, next) =>{
     }
 }
 
+module.exports.votePost = (req, res, next) => {
+    Post.findByIdAndUpdate({_id: req.body['postId']}, {$inc:{postScore: req.body['vote']}}).exec(
+        function(err, post) {
+            if(!post) {
+                return res.status(500).json({status:false});
+            }
+            else {
+                return res.status(200).json({status:true});
+            }
+        }
+    )
+}
+
 module.exports.completePost = (req, res, next) =>{
 
     var userType;

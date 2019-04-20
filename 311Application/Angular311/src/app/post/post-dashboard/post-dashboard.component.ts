@@ -32,13 +32,27 @@ export class PostDashboardComponent implements OnInit {
   upvotePost(num) {
     var postId = this.posts[num]._id;
     
-    //Insert upvote code
+    this.postService.votePost(postId, 1).subscribe(
+      res => {
+        location.reload()
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
 
   downvotePost(num) {
     var postId = this.posts[num]._id;
-
-    //Insert downvote code
+    
+    this.postService.votePost(postId, -1).subscribe(
+      res => {
+        location.reload()
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
 
   deletePost(num) {

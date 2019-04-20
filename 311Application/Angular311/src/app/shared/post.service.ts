@@ -29,6 +29,10 @@ export class PostService {
     return this.http.post(environment.apiBaseUrl + '/deletePost', {postId})
   }
 
+  votePost(postId, vote){
+    return this.http.post(environment.apiBaseUrl + '/votePost', {postId, vote})
+  }
+
   completePost(postId){
     return this.http.post(environment.apiBaseUrl + '/completePost', {postId})
   }
